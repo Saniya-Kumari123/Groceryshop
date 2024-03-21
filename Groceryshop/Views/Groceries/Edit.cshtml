@@ -1,0 +1,139 @@
+﻿@model Groceryshop.Models.Grocery
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        /* Internal CSS for form styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Change background color as desired */
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .control-label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        .btn-primary {
+            background-color: purple;
+            border-color: purple;
+            width: 100%;
+        }
+
+            .btn-primary:hover {
+                background-color: #7a42f4;
+                border-color: #7a42f4;
+            }
+
+        /* Internal CSS for table styling */
+        table {
+            width: 100%;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Internal CSS for the "Edit" heading */
+        h1 {
+            font-weight: bold;
+            color: purple;
+        }
+
+        /* Internal CSS for the "Save" button */
+        input[type="submit"] {
+            background-color: purple;
+            border-color: purple;
+            border-radius: 10px;
+            width: 100%;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #7a42f4;
+                border-color: #7a42f4;
+            }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Edit</h1>
+
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <label asp-for="Product" class="control-label"></label>
+                        <input asp-for="Product" class="form-control" />
+                        <span asp-validation-for="Product" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Quantity" class="control-label"></label>
+                        <input asp-for="Quantity" class="form-control" />
+                        <span asp-validation-for="Quantity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Total" class="control-label"></label>
+                        <input asp-for="Total" class="form-control" />
+                        <span asp-validation-for="Total" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>
+</html>

@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Groceryshop.Models.Grocery>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 10px; /* Rounded table box */
+        overflow: hidden; /* Hide overflow for rounded corners */
+    }
+
+        .table th,
+        .table td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+        }
+
+    .btn {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        color: #fff;
+        background-color: #800080; /* Pink color for buttons */
+        border-color: #800080; /* Pink color for buttons */
+        text-decoration: none; /* Remove underline */
+    }
+
+        .btn:active,
+        .btn.active {
+            background-color: pink; /* Keep pink color on click */
+            border-color: pink; /* Keep pink color on click */
+        }
+
+    h1 {
+        font-weight: bold;
+        color: purple; /* Purple color for heading */
+    }
+</style>
+
+<h1><b>Index</b></h1>
+
+<p>
+    <a asp-action="Create" class="btn">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

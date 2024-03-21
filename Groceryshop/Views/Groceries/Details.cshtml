@@ -1,0 +1,133 @@
+﻿@model Groceryshop.Models.Grocery
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        /* Internal CSS for form styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Change background color as desired */
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .control-label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        .btn-primary {
+            background-color: purple;
+            border-color: purple;
+            width: 100%;
+        }
+
+            .btn-primary:hover {
+                background-color: purple;
+                border-color: purple;
+            }
+
+        /* Internal CSS for table styling */
+        table {
+            width: 100%;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Internal CSS for the "Create" heading */
+        h1, h3 {
+            font-weight: bold;
+            color: purple;
+        }
+
+        h3 {
+            color: pink; /* Change color to pink */
+        }
+
+        /* Internal CSS for the "Edit" link */
+        a[href*="Edit"] {
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Details</h1>
+
+        <div>
+            
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Product)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Product)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Quantity)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Total)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Total)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>
+</html>

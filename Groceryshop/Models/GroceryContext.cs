@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+
+namespace Groceryshop.Models;
+
+public partial class GroceryContext : DbContext
+{
+    public GroceryContext()
+    {
+    }
+
+    public GroceryContext(DbContextOptions<GroceryContext> options)
+        : base(options)
+    {
+    }
+
+    public virtual DbSet<Grocery> Groceries { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-SH7T7AL;Initial Catalog=Grocery;Integrated Security=True;Trust Server Certificate=True");
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Grocery>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Grocery__3214EC071C46D96B");
+
+            entity.ToTable("Grocery");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Price).HasColumnName("price");
+            entity.Property(e => e.Product)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("product");
+        });
+
+        OnModelCreatingPartial(modelBuilder);
+    }
+
+    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+}
